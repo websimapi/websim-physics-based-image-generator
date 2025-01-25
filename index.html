@@ -3,21 +3,22 @@
   <meta charset="UTF-8">
   <title>Physics-Based Image Generator</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
 </head>
 <body>
   <div class="container">
     <div class="input-section">
       <input type="text" id="imagePrompt" placeholder="Enter image description...">
-      <button onclick="generateImage()">Generate</button>
+      <button onclick="window.app.generateImage()">Generate</button>
     </div>
     
     <div class="generation-chamber">
-      <canvas id="physicsCanvas"></canvas>
+      <canvas id="physicsCanvas" width="800" height="600"></canvas>
       <div id="pixelContainer"></div>
     </div>
 
     <div class="controls">
-      <button onclick="togglePhysics()">Toggle Physics</button>
+      <button onclick="window.app.togglePhysics()">Toggle Physics</button>
       <div class="sliders">
         <label>Gravity: <input type="range" id="gravitySlider" min="0" max="2" step="0.1" value="0.5"></label>
         <label>Bounce: <input type="range" id="bounceSlider" min="0" max="1" step="0.1" value="0.7"></label>
@@ -26,7 +27,6 @@
     </div>
   </div>
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
   <script type="module" src="scripts/main.js"></script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"4c6229722a6346bc8eb5cb0e5eae5d41","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>

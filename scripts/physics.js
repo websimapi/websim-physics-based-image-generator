@@ -1,8 +1,19 @@
 export class PhysicsEngine {
   constructor(canvasId) {
-    this.engine = Matter.Engine.create();
-    this.world = this.engine.world;
+    if (!Matter) {
+      throw new Error('Matter.js is required');
+    }
+
     this.canvas = document.getElementById(canvasId);
+    if (!this.canvas) {
+      throw new Error('Canvas element not found');
+    }
+
+    this.engine = Matter.Engine.create({
+      enableSleeping: false
+    });
+    
+    this.world = this.engine.world;
     this.ctx = this.canvas.getContext('2d');
     
     this.render = Matter.Render.create({
@@ -12,11 +23,14 @@ export class PhysicsEngine {
         width: 800,
         height: 600,
         wireframes: false,
-        background: 'transparent'
+        background: 'transparent',
+        pixelRatio: window.devicePixelRatio || 1
       }
     });
     
     this.pixelBodies = [];
+    this.bounciness = 0.7;
+    this.friction = 0.1;
     this.setupBoundaries();
   }
   
